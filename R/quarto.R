@@ -153,33 +153,20 @@ quarto_run <- function(
       R_LIBS = paste(libpaths, collapse = .Platform$path.sep)
     )
 
-    # On Windows, also pass via QUARTO_KNITR_RSCRIPT_ARGS as a workaround
+    # On Windows, also pass via R_PROFILE_USER as a workaround
     # for environment variables not being inherited by Rscript subprocess
     # https://github.com/quarto-dev/quarto-r/issues/217
     if (.Platform$OS.type == "windows") {
-      # Get Quarto's resource path and read rmd.R
-      paths_output <- system2(quarto_bin, "--paths", stdout = TRUE)
-      resources_path <- paths_output[2]
-      rmd_r_path <- file.path(resources_path, "rmd", "rmd.R")
-      rmd_content <- readLines(rmd_r_path, warn = FALSE)
-
-      # Create .libPaths() call to prepend
       escaped_paths <- gsub("\\", "\\\\", libpaths, fixed = TRUE)
       escaped_paths <- gsub('"', '\\"', escaped_paths, fixed = TRUE)
       paths_str <- paste0('"', escaped_paths, '"', collapse = ", ")
-      libpaths_call <- sprintf('.libPaths(c(%s, .libPaths()))', paths_str)
 
-      # Write combined script: .libPaths() + original rmd.R content
-      wrapper_file <- tempfile("quarto_libpaths_", fileext = ".R")
-      writeLines(c(libpaths_call, rmd_content), wrapper_file)
+      # Create an R profile that sets .libPaths() at startup
+      profile_content <- sprintf('.libPaths(c(%s, .libPaths()))', paths_str)
+      profile_file <- tempfile("quarto_Rprofile_", fileext = ".R")
+      writeLines(profile_content, profile_file)
 
-      # Use --file=wrapper to execute our combined script
-      existing_args <- Sys.getenv("QUARTO_KNITR_RSCRIPT_ARGS", "")
-      new_args <- paste0("--file=", wrapper_file)
-      if (nzchar(existing_args)) {
-        new_args <- paste(existing_args, new_args, sep = ",")
-      }
-      custom_env <- c(custom_env, QUARTO_KNITR_RSCRIPT_ARGS = new_args)
+      custom_env <- c(custom_env, R_PROFILE_USER = profile_file)
     }
   }
 
