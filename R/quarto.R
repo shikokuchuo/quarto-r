@@ -146,11 +146,37 @@ quarto_run <- function(
   # It needs to be passed if .libPaths() was modified in the current R session
   # (e.g. to install dev package in a temporary library)
   opt_in_libpath <- getOption("quarto.use_libpaths", TRUE)
+
   if (isTRUE(opt_in_libpath) && !is.null(libpaths)) {
     custom_env <- c(
       custom_env,
       R_LIBS = paste(libpaths, collapse = .Platform$path.sep)
     )
+
+    # On Windows, also pass via QUARTO_KNITR_RSCRIPT_ARGS as a workaround
+    # for environment variables not being inherited by Rscript subprocess
+    # https://github.com/quarto-dev/quarto-r/issues/217
+    if (.Platform$OS.type == "windows") {
+      # Create a wrapper script that sets .libPaths() then sources rmd.R
+      escaped_paths <- gsub("\\", "\\\\", libpaths, fixed = TRUE)
+      escaped_paths <- gsub('"', '\\"', escaped_paths, fixed = TRUE)
+      paths_str <- paste0('"', escaped_paths, '"', collapse = ", ")
+
+      wrapper_content <- sprintf(
+        '.libPaths(c(%s, .libPaths()))\nargs <- commandArgs(trailingOnly = FALSE)\nsource(args[length(args)])',
+        paths_str
+      )
+      wrapper_file <- tempfile("quarto_libpaths_", fileext = ".R")
+      writeLines(wrapper_content, wrapper_file)
+
+      # Use --file=wrapper to execute our wrapper, which then sources rmd.R
+      existing_args <- Sys.getenv("QUARTO_KNITR_RSCRIPT_ARGS", "")
+      new_args <- paste0("--file=", wrapper_file)
+      if (nzchar(existing_args)) {
+        new_args <- paste(existing_args, new_args, sep = ",")
+      }
+      custom_env <- c(custom_env, QUARTO_KNITR_RSCRIPT_ARGS = new_args)
+    }
   }
 
   # This is required because `"current"` only is not supported by processx
