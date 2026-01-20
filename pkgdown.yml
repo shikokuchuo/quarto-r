@@ -1,0 +1,16 @@
+pandoc: 3.1.11
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  advanced-vignettes: advanced-vignettes.html
+  dynamic-metadata: dynamic-metadata.html
+  hello-pdf: hello-pdf.pdf
+  hello: hello.html
+  articles/markdown-html-tables: markdown-html-tables.html
+  publishing: publishing.html
+  r-scripts: r-scripts.html
+  articles/theme-helpers: theme-helpers.html
+last_built: 2026-01-20T22:52Z
+urls:
+  reference: https://quarto-dev.github.io/quarto-r/reference
+  article: https://quarto-dev.github.io/quarto-r/articles
