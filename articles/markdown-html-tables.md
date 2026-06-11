@@ -70,6 +70,7 @@ escaping problems using this feature.
 Here’s what happens when you don’t use the helper functions:
 
 ``` r
+
 library(quarto)
 
 # Without helper functions - Markdown won't be processed
@@ -92,11 +93,12 @@ knitr::kable(
 | Item 2 | \*Italic text\*   |
 | Item 3 | \`Code text\`     |
 
-Without Quarto processing
+Without Quarto processing {.table .caption-top}
 
 And here’s the same table with proper Quarto processing:
 
 ``` r
+
 # With helper functions - Markdown will be processed
 enhanced_data <- data.frame(
   Item = c("Item 1", "Item 2", "Item 3"),
@@ -121,7 +123,7 @@ knitr::kable(
 | Item 2 | *Italic text* |
 | Item 3 | `Code text`   |
 
-With Quarto processing
+With Quarto processing {.table .caption-top}
 
 **Key point**: Always remember to set `escape = FALSE` when using these
 functions with
@@ -149,6 +151,7 @@ The helper functions offer two encoding options:
   issues
 
 ``` r
+
 # Base64 encoding (default) - safer for complex content
 complex_content <- tbl_qmd_span_base64("Content with <em>HTML</em> & special chars")
 
@@ -174,6 +177,7 @@ function is a common way to create tables in R Markdown and Quarto. By
 setting `escape = FALSE`, we can include HTML in the table cells:
 
 ``` r
+
 # Create a data frame with math expressions
 tbl <- data.frame(
   var = c("$a$", "$b$", "$c$"),
@@ -187,11 +191,11 @@ tbl$var <- sapply(tbl$var, tbl_qmd_span)
 knitr::kable(tbl, format = "html", escape = FALSE)
 ```
 
-| var | val |
-|:----|----:|
-| $a$ |   1 |
-| $b$ |   2 |
-| $c$ |   3 |
+| var   | val |
+|:------|----:|
+| $`a`$ |   1 |
+| $`b`$ |   2 |
+| $`c`$ |   3 |
 
 Table 1: A table with a math equation rendered using Quarto’s data-qmd
 attribute
@@ -209,6 +213,7 @@ shortcodes in a table, as the video player won’t be rendered outside of
 Quarto:
 
 ``` r
+
 # Create a video embed with a display text
 video_embed <- tbl_qmd_span(
   "{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}",
@@ -292,6 +297,7 @@ package supports raw HTML content
 Use this simple test to verify everything is working:
 
 ``` r
+
 test_data <- data.frame(
   Test = "Markdown Processing",
   Result = tbl_qmd_span("**This should be bold**")
@@ -355,6 +361,7 @@ appropriate attributes
 **Recommended Implementation:**
 
 ``` r
+
 # Example function signature for package developers
 your_table_function <- function(data, markdown_cols = NULL, quarto = TRUE) {
   # If quarto = TRUE and in Quarto context, apply data-qmd attributes
@@ -378,6 +385,7 @@ Here is a more complex example that combines all these features to
 create a complete HTML table with Markdown content:
 
 ``` r
+
 library(kableExtra)
 
 # Create a data frame with different types of content
@@ -440,6 +448,7 @@ is used to allow raw HTML content in the table cells, and
 `escape = FALSE` is set to avoid escaping the HTML content:
 
 ``` r
+
 library(gt)
 gt(complex_table) |>
   fmt_passthrough(columns = "Example", escape = FALSE)
@@ -456,6 +465,7 @@ functions. Here is the example with built-in support for Markdown
 content in **gt**:
 
 ``` r
+
 data.frame(
   Feature = c("Formatting", "Math", "References", "Media"),
   Example = c(
@@ -495,6 +505,7 @@ Quarto’s HTML table processing. So, our previous table would look like
 this:
 
 ``` r
+
 library(tinytable)
 
 tt(complex_table)
@@ -514,6 +525,7 @@ and
 will not be needed.
 
 ``` r
+
 options(tinytable_quarto_disable_processing = FALSE)
 tt(complex_table)
 ```
@@ -528,6 +540,7 @@ or
 to be processed correctly by Quarto. Let’s unset the option:
 
 ``` r
+
 options(tinytable_quarto_disable_processing = NULL)
 ```
 
@@ -542,6 +555,7 @@ function directly with Markdown content in the table cells, and mark the
 cells as using Quarto Markdown processing.
 
 ``` r
+
 data.frame(
   Feature = c("Formatting", "Math", "References", "Media"),
   Example = c(

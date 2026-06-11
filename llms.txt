@@ -18,6 +18,7 @@ from <https://quarto.org/docs/get-started/>.
 Latest released version from CRAN
 
 ``` r
+
 # latest release version 
 install.packages("quarto")
 ```
@@ -25,6 +26,7 @@ install.packages("quarto")
 Latest dev version from Github
 
 ``` r
+
 # dev version
 pak::pak("quarto-dev/quarto-r")
 # or
@@ -34,6 +36,7 @@ remotes::install_github("quarto-dev/quarto-r")
 or Latest build of dev version from r-universe
 
 ``` r
+
 install.packages('quarto', repos = c('https://quarto-dev.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 

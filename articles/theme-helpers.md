@@ -25,6 +25,7 @@ for examples using each supported package with dark mode,
 Demonstrates a flextable with green foreground and yellow background.
 
 ``` r
+
 library(flextable)
 library(quarto)
 
@@ -43,20 +44,20 @@ ft <- set_caption(ft, caption = "New York Air Quality Measurements")
 ft |> yellow_green_theme()
 ```
 
-| Air quality                                                        |         |      |      | Time  |     |
-|--------------------------------------------------------------------|---------|------|------|-------|-----|
-| Ozone                                                              | Solar.R | Wind | Temp | Month | Day |
-| 41                                                                 | 190     | 7.4  | 67   | 5     | 1   |
-| 36                                                                 | 118     | 8.0  | 72   | 5     | 2   |
-| 18                                                                 | 313     | 11.5 | 62   | 5     | 4   |
-|                                                                    | 194     | 8.6  | 69   | 5     | 10  |
-| 28                                                                 |         | 14.9 | 66   | 5     | 6   |
-| 8                                                                  | 19      | 20.1 | 61   | 5     | 9   |
-| 12                                                                 | 149     | 12.6 | 74   | 5     | 3   |
-|                                                                    |         | 14.3 | 56   | 5     | 5   |
-| 19                                                                 | 99      | 13.8 | 59   | 5     | 8   |
-| 23                                                                 | 299     | 8.6  | 65   | 5     | 7   |
-| Daily air quality measurements in New York, May to September 1973. |         |      |      |       |     |
+| Air quality |  |  |  | Time |  |
+|----|----|----|----|----|----|
+| Ozone | Solar.R | Wind | Temp | Month | Day |
+| 41 | 190 | 7.4 | 67 | 5 | 1 |
+| 8 | 19 | 20.1 | 61 | 5 | 9 |
+| 18 | 313 | 11.5 | 62 | 5 | 4 |
+|  |  | 14.3 | 56 | 5 | 5 |
+| 36 | 118 | 8.0 | 72 | 5 | 2 |
+| 12 | 149 | 12.6 | 74 | 5 | 3 |
+| 23 | 299 | 8.6 | 65 | 5 | 7 |
+|  | 194 | 8.6 | 69 | 5 | 10 |
+| 28 |  | 14.9 | 66 | 5 | 6 |
+| 19 | 99 | 13.8 | 59 | 5 | 8 |
+| Daily air quality measurements in New York, May to September 1973. |  |  |  |  |  |
 
 ## ggiraph
 
@@ -64,6 +65,7 @@ Demonstrates a ggiraph interactive plot with deep blue background and
 mauve foreground.
 
 ``` r
+
 library(quarto)
 library(ggplot2)
 library(ggiraph)
@@ -83,6 +85,7 @@ Demonstrates a ggplot2 plot with near-black background and green-grey
 foreground.
 
 ``` r
+
 library(quarto)
 library(ggplot2)
 
@@ -103,6 +106,7 @@ Demonstrates a gt table with light green background and black
 foreground.
 
 ``` r
+
 library(gt)
 library(quarto)
 library(dplyr)
@@ -138,6 +142,7 @@ Demonstrates a heatmaply interactive heatmap with a dark green
 background background and light blue foreground.
 
 ``` r
+
 library(quarto)
 library(plotly)
 
@@ -157,6 +162,7 @@ Demonstrates a patchwork plot with dark red background and light grey
 foreground.
 
 ``` r
+
 library(ggplot2)
 library(quarto)
 library(patchwork)

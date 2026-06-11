@@ -19,6 +19,7 @@ For Posit Connect, use the
 function for the server you are publishing to. For example:
 
 ``` r
+
 rsconnect::connectUser(server = "rsc.example.com")
 ```
 
@@ -29,6 +30,7 @@ For shinyapps.io, use the
 function. For example:
 
 ``` r
+
 rsconnect::setAccountInfo(name = 'norahjones', token = 'AB6783FD23', secret = '36x+k0bBy6W')
 ```
 
@@ -45,6 +47,7 @@ very *first time* that you publish you should specify both the `server`
 and `account` that you want to use for publishing. For example:
 
 ``` r
+
 library(quarto)
 quarto_publish_doc("document.qmd", server = "rsc.example.com", account = "njones")
 ```
@@ -53,6 +56,7 @@ Subsequent updates to the same document don’t need to specify the
 `server` and `account`:
 
 ``` r
+
 quarto_publish_doc("document.qmd")
 ```
 
@@ -64,6 +68,7 @@ underlying data changes. To do this, add the `render = "server"`
 argument:
 
 ``` r
+
 quarto_publish_doc("document.qmd", 
                    server = "rsc.example.com", account = "njones",
                    render = "server")
@@ -79,6 +84,7 @@ very *first time* that you publish you should specify both the `server`
 and `account` that you want to use for publishing. For example:
 
 ``` r
+
 library(quarto)
 quarto_publish_site(server = "rsc.example.com", account = "njones")
 ```
@@ -87,6 +93,7 @@ Subsequent updates to the same site don’t need to specify the `server`
 and `account`:
 
 ``` r
+
 quarto_publish_site()
 ```
 
@@ -98,6 +105,7 @@ underlying data changes. To do this, add the `render = "server"`
 argument:
 
 ``` r
+
 quarto_publish_site(server = "rsc.example.com", account = "njones",
                     render = "server")
 ```
@@ -113,6 +121,7 @@ that you want to use for publishing (this is required for the first
 publish only). For example:
 
 ``` r
+
 library(quarto)
 quarto_publish_app("shiny.qmd", server = "rsc.example.com", account = "njones")
 ```
@@ -120,6 +129,7 @@ quarto_publish_app("shiny.qmd", server = "rsc.example.com", account = "njones")
 To publish to shinyapps.io, use `server = "shinyapps.io"`:
 
 ``` r
+
 quarto_publish_app("shiny.qmd", server = "shinyapps.io")
 ```
 
@@ -127,5 +137,6 @@ For both services, subsequent publishes need not provide the `server` or
 `account`:
 
 ``` r
+
 quarto_publish_app("shiny.qmd")
 ```

@@ -14,7 +14,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/quarto-dev/quarto-r/blob/fix-libpaths/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/quarto-dev/quarto-r/blob/main/DESCRIPTION)
 
 Allaire J, Dervieux C (2026). *quarto: R Interface to 'Quarto' Markdown
 Publishing System*. R package version 1.5.1.9002,

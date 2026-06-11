@@ -18,6 +18,7 @@ text instead of being processed as metadata.
 Let’s start with a basic example where we set some metadata dynamically:
 
 ``` r
+
 # Simulate some computed values
 user_type <- "admin"
 is_debug <- TRUE
@@ -49,7 +50,7 @@ body of your document:
 user_level: admin
 debug_mode: true
 app_version: 2.1.0
-generated_at: 2026-01-20T22:52:38+0000
+generated_at: 2026-06-11T09:24:27+0000
 ---
 ```
 
@@ -87,7 +88,7 @@ content features:
 > This content is only visible when `debug_mode` is true. Since we set
 > it to TRUE, this message should be visible.
 >
-> Generated at: 2026-01-20T22:52:38+0000
+> Generated at: 2026-06-11T09:24:27+0000
 
 ## Advanced Use Case: Conditional Content Based on parameters
 
@@ -166,6 +167,7 @@ This approach is particularly useful for:
 You can render different versions by passing parameters:
 
 ``` r
+
 # Internal report with confidential data
 quarto::quarto_render("sales-report.qmd", 
   execute_params = list(

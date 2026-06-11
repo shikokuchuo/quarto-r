@@ -124,6 +124,7 @@ to CRAN, if a Typst PDF looks more appealing to you than a LaTeX PDF.
 Here are the vignette engines available in the `quarto` package:
 
 ``` r
+
 library(quarto)
 names(tools::vignetteEngine(package = "quarto"))
 ```

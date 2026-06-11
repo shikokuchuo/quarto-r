@@ -82,6 +82,7 @@ the `output: asis` option:
     #| output: asis
     write_yaml_metadata_block(admin = TRUE, version = "1.0")
 
+
     Without the `output: asis` option, the YAML metadata block will be
     displayed as text rather than processed as metadata by Quarto.
 

@@ -83,6 +83,7 @@ mtcars |>
 Now let’s extract the R code:
 
 ``` r
+
 library(quarto)
 
 # Extract R code to a script
@@ -94,6 +95,7 @@ Let’s see what the generated R script looks like:
     example.R
 
 ``` r
+
 #' ---
 #' title: My Analysis
 #' author: Data Scientist
@@ -159,10 +161,11 @@ The function will inform you about the non-R cells and extract only the
 R code:
 
 ``` r
+
 # Extract R code from mixed-language document
 mixed_r_script <- qmd_to_r_script(mixed_qmd)
 #> Extracting only R code cells from
-#> '/tmp/RtmpiU19ni/quarto-r-scripts-vignette25ee60df5e33/mixed.qmd'.
+#> '/tmp/Rtmp31waE4/quarto-r-scripts-vignette28f456642585/mixed.qmd'.
 #> → Other languages will be ignored (found python and ojs).
 ```
 
@@ -171,6 +174,7 @@ The resulting R script will contain only the R code cell:
     mixed.R
 
 ``` r
+
 #' ---
 #' title: Mixed Language Analysis
 #' format: html
@@ -192,6 +196,7 @@ compatible with Quarto’s script rendering feature.
 ### Basic Usage
 
 ``` r
+
 # Add a simple title to an R script
 add_spin_preamble("my-script.R", title = "My Analysis")
 
@@ -210,6 +215,7 @@ add_spin_preamble("my-script.R",
     simple.R
 
 ``` r
+
 # Load required libraries
 library(ggplot2)
 library(dplyr)
@@ -229,6 +235,7 @@ ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
 Now add a YAML preamble:
 
 ``` r
+
 # Add YAML metadata for Quarto rendering
 add_spin_preamble(simple_script, 
                   title = "Car Analysis",
@@ -242,7 +249,7 @@ add_spin_preamble(simple_script,
                     )
                   ))
 #> Added spin preamble to
-#> '/tmp/RtmpiU19ni/quarto-r-scripts-vignette25ee60df5e33/simple.R'.
+#> '/tmp/Rtmp31waE4/quarto-r-scripts-vignette28f456642585/simple.R'.
 ```
 
 The updated script now has YAML metadata:
@@ -250,6 +257,7 @@ The updated script now has YAML metadata:
     simple.R
 
 ``` r
+
 #' ---
 #' author: R User
 #' format:
@@ -279,6 +287,7 @@ ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
 This script can now be rendered with Quarto:
 
 ``` r
+
 # Render the R script as a Quarto document
 quarto_render(simple_script)
 ```
@@ -288,6 +297,7 @@ quarto_render(simple_script)
 These functions work seamlessly with other quarto package functions:
 
 ``` r
+
 # Complete workflow example
 library(quarto)
 
